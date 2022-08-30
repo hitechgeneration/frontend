@@ -38,9 +38,9 @@ export const Header = () => {
         <a href="https://www.instagram.com/hitechgeneration" target="__blank">
           <AiFillInstagram />
         </a>
-        <button>
+        <a href="https://www.facebook.com/hitechgen" target="__blank">
           <AiFillFacebook />
-        </button>
+        </a>
         <AnimatePresence>
           {emailCopy && (
             <motion.div
