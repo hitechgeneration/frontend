@@ -15,7 +15,7 @@ const Welcome = ({ openModal }: { openModal: any }) => {
       <div className="text-center text-4xl font-medium tracking-tight">
         Aftësi, Imagjinatë, Kreativitet.
       </div>
-      <div className="w-fit mx-auto  flex flex-row gap-10">
+      <div className="w-fit mx-auto flex flex-row gap-10">
         <motion.div
           className="div"
           animate={{ x: [0, 100, 0, -70, 0] }}
@@ -65,7 +65,7 @@ const Welcome = ({ openModal }: { openModal: any }) => {
           <Image src="/SVG/robot4.svg" width={100} height={100} />
         </motion.div>
       </div>
-      <div className="absolute -z-40 w-screen md:w-3/4 h-1/3 md:h-3/4 top-1/2">
+      <div className="absolute -z-40 w-11/12 md:w-3/4 h-1/3 md:h-3/4 top-1/2">
         <Image src="/bg.jpg" layout="fill" objectFit="cover" />
       </div>
       <div className="flex flex-col gap-4">
@@ -92,60 +92,70 @@ const Welcome = ({ openModal }: { openModal: any }) => {
             kompjuterët dhe teknologjinë.
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-4 my-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-yellow-300 p-10 rounded-xl cursor-pointer"
+            className="relative bg-yellow-300 p-10 h-48 rounded-xl cursor-pointer"
           >
-            <div className="text-amber-900 text-xl font-bold text-center mb-4">
-              Kodim me Scratch
-            </div>
-            <div className="text-amber-700">
-              <SiScratch size={50} className="w-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="text-amber-900 text-xl font-bold text-center mb-4">
+                Kodim me Scratch
+              </div>
+              <div className="text-amber-700">
+                <SiScratch size={50} className="w-full" />
+              </div>
             </div>
           </motion.div>
           <motion.div
-            className="bg-green-500 p-10 rounded-xl cursor-pointer"
+            className="relative bg-green-500 p-10 h-48 rounded-xl cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
-            <div className="text-emerald-50 text-xl font-bold text-center mb-4">
-              Kodim me Python
-            </div>
-            <div className="text-emerald-100">
-              <FaPython size={50} className="w-full" />
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="bg-rose-500 p-10 rounded-xl cursor-pointer"
-          >
-            <div className="text-red-50 text-xl font-bold text-center mb-4">
-              Robotikë
-            </div>
-            <div className="text-red-100">
-              <FaRobot size={50} className="w-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="text-emerald-50 text-xl font-bold text-center mb-4">
+                Kodim me Python
+              </div>
+              <div className="text-emerald-100">
+                <FaPython size={50} className="w-full" />
+              </div>
             </div>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-blue-500 p-10 rounded-xl cursor-pointer"
+            className="relative bg-rose-500 p-10 rounded-xl h-48 cursor-pointer"
           >
-            <div className="text-yellow-50 text-xl font-bold text-center mb-4">
-              Grafik Dizajn dhe Fotografi
-            </div>
-            <div className="text-yellow-100">
-              <SiAdobe size={50} className="w-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="text-red-50 text-xl font-bold text-center mb-4">
+                Robotikë
+              </div>
+              <div className="text-red-100">
+                <FaRobot size={50} className="w-full" />
+              </div>
             </div>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="bg-fuchsia-500 p-10 rounded-xl cursor-pointer"
+            className="relative bg-blue-500 p-10 rounded-xl h-48 cursor-pointer"
           >
-            <div className="text-pink-50 text-xl font-bold text-center mb-4">
-              Sipërmarrësit e Vegjël
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="text-yellow-50 text-xl font-bold text-center mb-4">
+                Grafik Dizajn dhe Fotografi
+              </div>
+              <div className="text-yellow-100">
+                <SiAdobe size={50} className="w-full" />
+              </div>
             </div>
-            <div className="text-pink-100">
-              <GiSmart size={50} className="w-full" />
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="relative bg-fuchsia-500 p-10 rounded-xl h-48 cursor-pointer"
+          >
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="text-pink-50 text-xl font-bold text-center mb-4">
+                Sipërmarrësit e Vegjël
+              </div>
+              <div className="text-pink-100">
+                <GiSmart size={50} className="w-full" />
+              </div>
             </div>
           </motion.div>
         </div>
