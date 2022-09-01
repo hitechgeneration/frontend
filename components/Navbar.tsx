@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center fixed top-0 z-50 w-5/6 mt-10 px-2 bg-white rounded-xl bg-opacity-80 backdrop-blur-lg">
+    <div className="flex flex-row justify-between items-center sticky top-2 z-50 w-full mt-2 px-2 bg-white rounded-xl bg-opacity-90 backdrop-blur-lg border-2 border-gray-100">
       <div id="left">
         <Link href="/">
           <button className="flex flex-row gap-2 items-center outline-none focus:outline-2 focus:outline-blue-100 rounded-xl px-2">
@@ -31,7 +31,7 @@ export const Navbar = () => {
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-blue-400 focus:bg-blue-100"
           href="#rrethnesh"
           onClick={(e) => {
-            const kurset = document.getElementById("kurset");
+            const kurset = document.getElementById("rrethnesh");
             e.preventDefault();
             kurset?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
