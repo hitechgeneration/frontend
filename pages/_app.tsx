@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Navbar } from "../components/Navbar";
 import { Header } from "../components/Header";
+import { Kontakt } from ".";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Navbar />
         <Component {...pageProps} />
       </div>
+      <Kontakt />
     </>
   );
 }

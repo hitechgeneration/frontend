@@ -1,4 +1,4 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Combobox, Dialog, Transition } from "@headlessui/react";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
@@ -8,14 +8,88 @@ import Image from "next/image";
 import { SiScratch, SiAdobe } from "react-icons/si";
 import { FaPython, FaRobot } from "react-icons/fa";
 import { GiSmart } from "react-icons/gi";
+import { useForm } from "react-hook-form";
+import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
+
+const KursetGrid = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10">
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative bg-yellow-300 p-10 h-48 rounded-xl cursor-pointer"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="text-amber-900 text-lg md:text-xl font-bold text-center mb-4">
+            Kodim me Scratch
+          </div>
+          <div className="text-amber-700">
+            <SiScratch size={50} className="w-full" />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        className="relative bg-green-500 p-10 h-48 rounded-xl cursor-pointer"
+        whileHover={{ scale: 1.05 }}
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="text-emerald-50 text-lg md:text-xl font-bold text-center mb-4">
+            Kodim me Python
+          </div>
+          <div className="text-emerald-100">
+            <FaPython size={50} className="w-full" />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative bg-rose-500 p-10 rounded-xl h-48 cursor-pointer"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="text-red-50 text-lg md:text-xl font-bold text-center mb-4">
+            Robotikë
+          </div>
+          <div className="text-red-100">
+            <FaRobot size={50} className="w-full" />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative bg-blue-500 p-10 rounded-xl h-48 cursor-pointer"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="text-yellow-50 text-lg md:text-xl font-bold text-center mb-4">
+            Grafik Dizajn dhe Fotografi
+          </div>
+          <div className="text-yellow-100">
+            <SiAdobe size={50} className="w-full" />
+          </div>
+        </div>
+      </motion.div>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        className="relative bg-fuchsia-500 p-10 rounded-xl h-48 cursor-pointer"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="text-pink-50 text-lg md:text-xl font-bold text-center mb-4">
+            Sipërmarrësit e Vegjël
+          </div>
+          <div className="text-pink-100">
+            <GiSmart size={50} className="w-full" />
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 const Welcome = ({ openModal }: { openModal: any }) => {
   return (
     <div className="grid grid-cols-1 gap-10 mt-20">
-      <div className="text-center text-4xl font-medium tracking-tight">
+      <div className="text-center text-2xl md:text-4xl font-medium tracking-tight">
         Aftësi, Imagjinatë, Kreativitet.
       </div>
-      <div className="w-fit mx-auto flex flex-row gap-10">
+      <div className="w-2/3 md:w-fit mx-auto flex flex-row gap-10">
         <motion.div
           className="div"
           animate={{ x: [0, 100, 0, -70, 0] }}
@@ -92,78 +166,19 @@ const Welcome = ({ openModal }: { openModal: any }) => {
             kompjuterët dhe teknologjinë.
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-yellow-300 p-10 h-48 rounded-xl cursor-pointer"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="text-amber-900 text-xl font-bold text-center mb-4">
-                Kodim me Scratch
-              </div>
-              <div className="text-amber-700">
-                <SiScratch size={50} className="w-full" />
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative bg-green-500 p-10 h-48 rounded-xl cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="text-emerald-50 text-xl font-bold text-center mb-4">
-                Kodim me Python
-              </div>
-              <div className="text-emerald-100">
-                <FaPython size={50} className="w-full" />
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-rose-500 p-10 rounded-xl h-48 cursor-pointer"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="text-red-50 text-xl font-bold text-center mb-4">
-                Robotikë
-              </div>
-              <div className="text-red-100">
-                <FaRobot size={50} className="w-full" />
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-blue-500 p-10 rounded-xl h-48 cursor-pointer"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="text-yellow-50 text-xl font-bold text-center mb-4">
-                Grafik Dizajn dhe Fotografi
-              </div>
-              <div className="text-yellow-100">
-                <SiAdobe size={50} className="w-full" />
-              </div>
-            </div>
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="relative bg-fuchsia-500 p-10 rounded-xl h-48 cursor-pointer"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="text-pink-50 text-xl font-bold text-center mb-4">
-                Sipërmarrësit e Vegjël
-              </div>
-              <div className="text-pink-100">
-                <GiSmart size={50} className="w-full" />
-              </div>
-            </div>
-          </motion.div>
-        </div>
+        <KursetGrid />
       </div>
       {/* <div className="bg-sky-200 text-center">Animations</div> */}
     </div>
   );
 };
+
+const kurset = [
+  "Kodim me Scratch",
+  "Kodim me Python",
+  "Dizajn dhe Fotografi",
+  "Sipërmarrësit e Vegjël",
+];
 
 const PopUp = ({
   isOpen,
@@ -172,9 +187,31 @@ const PopUp = ({
   isOpen: boolean;
   closeModal: any;
 }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+
+  const [selected, setSelected] = useState(kurset[0]);
+  const [query, setQuery] = useState("");
+  const filteredKurse =
+    query === ""
+      ? kurset
+      : kurset.filter((kurs) =>
+          kurs
+            .toLocaleLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+        );
+
   return (
     <Transition show={isOpen}>
-      <Dialog as="div" className="relative z-20" onClose={closeModal}>
+      <Dialog as="div" className="relative z-50" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -199,52 +236,97 @@ const PopUp = ({
               <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                   as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
+                  className="text-lg md:text-xl font-medium leading-6 text-gray-900"
                 >
                   Forma e rregjistrimit
                 </Dialog.Title>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 mt-5">
                   <form
-                    action=""
+                    onSubmit={handleSubmit(onSubmit)}
                     className="flex flex-col gap-4 items-center w-full"
                   >
                     <input
                       type="text"
-                      className="w-full"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("emri_femijes")}
                       placeholder="Emri i fëmijës"
                     />
                     <input
                       type="text"
-                      className="w-full"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("mbiemri_femijes")}
                       placeholder="Mbiemri i fëmijës"
                     />
                     <input
                       type="text"
-                      className="w-full"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("mosha_femijes")}
                       placeholder="Mosha e fëmijës"
                     />
                     <input type="text" className="w-full" placeholder="Kursi" />
+                    <Combobox value={selected} onChange={setSelected}>
+                      <div>
+                        <Combobox.Input
+                          displayValue={(kurs: string) => kurs}
+                          onChange={(e) => setQuery(e.target.value)}
+                        />
+                        <Combobox.Button>Select</Combobox.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                        afterLeave={() => setQuery("")}
+                      >
+                        <Combobox.Options>
+                          {filteredKurse.length === 0 && query !== "" ? (
+                            <div>Nuk u gjend një kurs i tillë.</div>
+                          ) : (
+                            filteredKurse.map((kurs, index) => (
+                              <Combobox.Option key={index} value={kurs}>
+                                {({ selected, active }) => <div>{kurs}</div>}
+                              </Combobox.Option>
+                            ))
+                          )}
+                        </Combobox.Options>
+                      </Transition>
+                    </Combobox>
                     <input
                       type="text"
-                      className="w-full"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("emri_prindit")}
                       placeholder="Emri i prindit"
                     />
                     <input
                       type="text"
-                      className="w-full"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("mbiemri_prindit")}
                       placeholder="Mbiemri i prindit"
                     />
                     <input type="text" className="w-full" placeholder="Cel" />
                     <input
-                      type="text"
-                      className="w-full"
+                      type="email"
+                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      {...register("email")}
                       placeholder="E-mail"
                     />
+                    <button
+                      type="submit"
+                      className="bg-red-500 text-white w-full py-1 rounded-full font-medium my-2 hover:bg-red-600"
+                    >
+                      Rregjistrohu
+                    </button>
                   </form>
                 </div>
                 <div>
-                  <button type="button" onClick={closeModal}>
-                    Mbarova
+                  <button
+                    type="button"
+                    className="inline-flex gap-2 items-center text-gray-500 bg-gray-100 rounded-xl py-1 px-2 hover:shadow-md"
+                    onClick={closeModal}
+                  >
+                    <AiFillCloseCircle />
+                    <span>Mbyll</span>
                   </button>
                 </div>
               </Dialog.Panel>
@@ -259,109 +341,209 @@ const PopUp = ({
 const Kurset = () => {
   return (
     <div className="relative">
-      <section id="kurset" className="absolute -top-36" />
-      <div>
-        <div className="text-4xl font-bold">Kurset</div>
-        <div>
-          <div>Kodimi</div>
-          <div>
-            Kodimi Junior - në këtë kurs mësojmë të kodojmë me programin scratch
-            dhe njihemi me Python. Scratch është një program lehtësisht i
-            aksesueshëm dhe i krijuar posaҫërisht për fëmijët. Përmes tij
-            programimi bëhet më i kuptueshëm dhe argëtues duke qënë se mësojmë
-            përmes imazheve, zhurmave e veprimeve vizuale. Gjatë muajit të
-            fundit të kursit fëmijët mësojnë bazat e Python, gjuhë programimi
-            përdorur gjerësisht në të gjithë botën.
+      <section id="kurset" className="absolute -top-24" />
+      <div className="text-md md:text-lg text-gray-700 ">
+        <div className="text-2xl md:text-4xl text-center font-bold mt-4 text-gray-800">
+          Kurset
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-10  gap-4">
+          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg md:text-xl font-medium text-gray-800">
+                Kodimi
+              </div>
+              <div className="flex flex-col gap-2 items-start">
+                <div className="w-1/2">Kodimi Junior</div>
+                <div className="">
+                  Në këtë kurs mësojmë të kodojmë me programin scratch dhe
+                  njihemi me Python. Scratch është një program lehtësisht i
+                  aksesueshëm dhe i krijuar posaҫërisht për fëmijët. Përmes tij
+                  programimi bëhet më i kuptueshëm dhe argëtues duke qënë se
+                  mësojmë përmes imazheve, zhurmave e veprimeve vizuale. Gjatë
+                  muajit të fundit të kursit fëmijët mësojnë bazat e Python,
+                  gjuhë programimi përdorur gjerësisht në të gjithë botën.
+                </div>
+              </div>
+              <div className="">
+                Kodimi i ndihmon fëmijët të zhvillojnë aftësitë
+                problem-zgjidhëse, të menduarin kritik, të përmirësojnë
+                komunikimin dhe krijimtarinë si dhe të aftësohen përmes punës në
+                grup.
+              </div>
+              <div className="font-medium text-gray-800">
+                Për tu regjistruar fëmija duhet:
+              </div>
+              <div>
+                <ul>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500 " />
+                    <span>Të jetë 7-12 vjeҫ</span>
+                  </li>
+                  <li className="inline-flex items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500 " />
+                    <span>Të dijë të lexojë e të shkruajë</span>
+                  </li>
+                </ul>
+                <div className="mt-2">
+                  Kursi organizohet në tre module prej 8 orësh mësimore, që
+                  zhvillohen dy herë në javë me seanca 60 minutëshe.
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            Kodimi i ndihmon fëmijët të zhvillojnë aftësitë problem-zgjidhëse,
-            të menduarin kritik, të përmirësojnë komunikimin dhe krijimtarinë si
-            dhe të aftësohen përmes punës në grup.
+          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg md:text-xl font-medium text-gray-800">
+                Kodimi
+              </div>
+              <div>
+                <div>Python ose HTML (T.B.D)</div>
+                <div className="mt-2">
+                  Në këtë kurs mësojmë të programojmë me Python. Gjuhë e
+                  përdorur gjerësisht nga profesionistë programimi në të gjithë
+                  botën. Kursi zhvillohet dy herë në javë, në tre module prej 8
+                  orësh secili. Programimi i ndihmon fëmijët të rrisin
+                  përqendrimin dhe të përmirësojnë përformancën akademike.
+                  Kodimi i mëson atyre që ta copëzojnë një problem në pjesë më
+                  të vogla dh të punojnë me secilën prej pjesëve, ai zhvillon të
+                  menduarin kritik.
+                </div>
+              </div>
+              <div className="font-medium text-gray-800">
+                Për tu regjistruar fëmija duhet:
+              </div>
+              <div>
+                <ul>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500 " />
+                    <span>Të jetë 10-14 vjeҫ</span>
+                  </li>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500 " />
+                    <span>Të ketë njohuri në gjuhën angleze </span>
+                  </li>
+                </ul>
+                <div className="mt-2">
+                  Kursi organizohet në tre module prej 8 orësh mësimore, që
+                  zhvillohen dy herë në javë me seanca 60 minutëshe.
+                </div>
+              </div>
+            </div>
           </div>
-          <div>Për tu regjistruar fëmija duhet:</div>
-          <div>
-            Të jetë 7-12 vjeҫ Të dijë të lexojë e të shkruajë Kursi organizohet
-            në tre module prej 8 orësh mësimore, që zhvillohen dy herë në javë
-            me seanca 60 minutëshe.
+          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg md:text-xl font-medium text-gray-800">
+                Robotika
+              </div>
+              <div>
+                Mund të tingëllojë si një sfidë e madhe të mësuarit të Robotikës
+                në një moshë të vogël, por në të vërtetë përveҫ se është shumë
+                argëtuese, ndihmon në zhvillimin e motorikës fine dhe
+                koordinimit dorë-sy, në përmirësimin e aftësive
+                problem-zgjidhësen si dhe të menduarin kreativ.
+              </div>
+              <div>
+                Në kursin e robotikës fëmijët asimilojnë koncepte shkencore të
+                fizikës dhe elektronikës përmes ndërtimit të projektve
+                interesante. Ata përmirësojnë punën në grup dhe komunikimin
+                gjatë realizimit të ҫdo projekti. Gjithashtu në modulin e trete
+                të kursit mësojmë krijimin me Arduino, pjesët robotike që
+                fëmijët realizojnë kryejnë veprime të cilat i programojmë përmes
+                kodeve.
+              </div>
+              <div>Robotika i përgatit fëmijët për të ardhmen.</div>
+              <div className="font-medium text-gray-800">
+                Për tu regjistruar fëmija duhet:
+              </div>
+              <div>
+                <ul>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500" />
+                    <span>Të jetë 7-12 vjeҫ</span>
+                  </li>
+                </ul>
+                <div className="mt-2">
+                  Kursi organizohet në katër module prej 8 orësh mësimore, që
+                  zhvillohen dy herë në javë me seanca 60 minutëshe.
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            Python ose HTML (T.B.D) - në këtë kurs mësojmë të programojmë me
-            Python. Gjuhë e përdorur gjerësisht nga profesionistë programimi në
-            të gjithë botën. Kursi zhvillohet dy herë në javë, në tre module
-            prej 8 orësh secili. Programimi i ndihmon fëmijët të rrisin
-            përqendrimin dhe të përmirësojnë përformancën akademike. Kodimi i
-            mëson atyre që ta copëzojnë një problem në pjesë më të vogla dh të
-            punojnë me secilën prej pjesëve, ai zhvillon të menduarin kritik.
+          <div className=" bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg md:text-xl font-medium text-gray-800">
+                Grafik Dizajn & fotografia
+              </div>
+              <div>
+                Ҫdo fëmijë ka një artist brenda vetes, dhe ҫdo prind me një
+                fëmijë që pëlqen artin e di rëndësinë e stimulimit të mendjes
+                dhe kreativitetit të tyre.
+              </div>
+              <div>
+                Gjatë ketij kursi fëmijët mësojmë përdormin e dy programeve më
+                të njohura në botën e dizajnit, photoshop dhe illustrator si dhe
+                marrin njohuri mbi fotografinë. Kursi nxit kreativitetin tek
+                femijët, rrit përqendrimin dhe ndihmon në të shprehurin e
+                emocioneve.
+              </div>
+              <div className="font-medium text-gray-800">
+                Për tu regjistruar fëmija duhet:
+              </div>
+              <div>
+                <ul>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500" />
+                    <span>Të jetë 7-12 vjeҫ</span>
+                  </li>
+                </ul>
+                <div className="mt-2">
+                  Kursi organizohet në katër module prej 8 orësh mësimore, që
+                  zhvillohen dy herë në javë me seanca 60 minutëshe.
+                </div>
+              </div>
+            </div>
           </div>
-          <div>Për tu regjistruar fëmija duhet:</div>
-          <div>
-            Të jetë 10-14 vjeҫ Të ketë njohuri në gjuhën angleze Kursi
-            organizohet në tre module prej 8 orësh mësimore, që zhvillohen dy
-            herë në javë me seanca 60 minutëshe.
-          </div>
-          <div>Robotika</div>
-          <div>
-            Mund të tingëllojë si një sfidë e madhe të mësuarit të Robotikës në
-            një moshë të vogël, por në të vërtetë përveҫ se është shumë
-            argëtuese, ndihmon në zhvillimin e motorikës fine dhe koordinimit
-            dorë-sy, në përmirësimin e aftësive problem-zgjidhësen si dhe të
-            menduarin kreativ.
-          </div>
-          <div>
-            Në kursin e robotikës fëmijët asimilojnë koncepte shkencore të
-            fizikës dhe elektronikës përmes ndërtimit të projektve interesante.
-            Ata përmirësojnë punën në grup dhe komunikimin gjatë realizimit të
-            ҫdo projekti. Gjithashtu në modulin e trete të kursit mësojmë
-            krijimin me Arduino, pjesët robotike që fëmijët realizojnë kryejnë
-            veprime të cilat i programojmë përmes kodeve.
-          </div>
-          <div>Robotika i përgatit fëmijët për të ardhmen.</div>
-          <div>
-            Për tu regjistruar fëmija duhet: Të jetë 7-12 vjeҫ Kursi organizohet
-            në katër module prej 8 orësh mësimore, që zhvillohen dy herë në javë
-            me seanca 60 minutëshe.
-          </div>
-          <div>Grafik Dizajn & fotografia</div>
-          <div>
-            Ҫdo fëmijë ka një artist brenda vetes, dhe ҫdo prind me një fëmijë
-            që pëlqen artin e di rëndësinë e stimulimit të mendjes dhe
-            kreativitetit të tyre.
-          </div>
-          <div>
-            Gjatë ketij kursi fëmijët mësojmë përdormin e dy programeve më të
-            njohura në botën e dizajnit, photoshop dhe illustrator si dhe marrin
-            njohuri mbi fotografinë. Kursi nxit kreativitetin tek femijët, rrit
-            përqendrimin dhe ndihmon në të shprehurin e emocioneve.
-          </div>
-          <div>
-            Për tu regjistruar fëmija duhet: Të jetë 7-12 vjeҫ Kursi organizohet
-            në katër module prej 8 orësh mësimore, që zhvillohen dy herë në javë
-            me seanca 60 minutëshe.
-          </div>
-          <div>Sipërmarrësit e vegjël</div>
-          <div>
-            Të mësuarit e sipërmarrjes në një moshë të vogël sjell një sërë
-            benefitesh për fëmijët. Ata zhvillojnë aftësi që janq të nevojshme
-            gjatë githë jetës si psh:
-          </div>
-          <div>
-            Bashkëpinimin dhe punën në grup Të folurin në public dhe prezantimin
-            Të mbledhin dhe të analizojnë të dhëna Si të përdorin median sociale
-            si mjet dobi-prurës Si të zgjidhin probleme reale dhe komplekse Si
-            të përdorin kuriozitetin dhe kreativitetin për t’u përballur me
-            situata të vështira
-          </div>
-          <div>
-            Kursi kultivon vendosmërinë, fokusin, inisiativën, dhe ndihmon në
-            brendësimin e parimeve kryesore të biznesit. Ai ndihmon fëmijët të
-            përvetësojnë aftësi të menaxhimit të parave, dhe të ndihen të aftë e
-            të kenë vetëbesim. Gjithashtu fëmijët mësojnë përdorimin e paketës
-            ofiҫe kaq të rëndësishme që në vitet e para të shkollimit.
-          </div>
-          <div>
-            Për t’u regjistruar fëmija duhet: Të jetë 7-12 vjeҫ Kursi
-            organizohet në katër module prej 8 orësh mësimore, që zhvillohen dy
-            herë në javë me seanca 60 minutëshe.
+          <div className=" bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <div className="flex flex-col gap-4">
+              <div className="text-lg md:text-xl font-medium text-gray-800">
+                Sipërmarrësit e vegjël
+              </div>
+              <div>
+                Të mësuarit e sipërmarrjes në një moshë të vogël sjell një sërë
+                benefitesh për fëmijët. Ata zhvillojnë aftësi që janq të
+                nevojshme gjatë githë jetës si psh:
+              </div>
+              <div>
+                Bashkëpinimin dhe punën në grup Të folurin në public dhe
+                prezantimin Të mbledhin dhe të analizojnë të dhëna Si të
+                përdorin median sociale si mjet dobi-prurës Si të zgjidhin
+                probleme reale dhe komplekse Si të përdorin kuriozitetin dhe
+                kreativitetin për tu përballur me situata të vështira
+              </div>
+              <div>
+                Kursi kultivon vendosmërinë, fokusin, inisiativën, dhe ndihmon
+                në brendësimin e parimeve kryesore të biznesit. Ai ndihmon
+                fëmijët të përvetësojnë aftësi të menaxhimit të parave, dhe të
+                ndihen të aftë e të kenë vetëbesim. Gjithashtu fëmijët mësojnë
+                përdorimin e paketës ofiҫe kaq të rëndësishme që në vitet e para
+                të shkollimit.
+              </div>
+              <div className="font-medium text-gray-800">
+                Për tu regjistruar fëmija duhet:
+              </div>
+              <div>
+                <ul>
+                  <li className="flex flex-row items-center gap-2">
+                    <AiFillCheckCircle className="text-green-500" />
+                    <span>Të jetë 7-12 vjeҫ</span>
+                  </li>
+                </ul>
+                <div className="mt-2">
+                  Kursi organizohet në katër module prej 8 orësh mësimore, që
+                  zhvillohen dy herë në javë me seanca 60 minutëshe.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -372,53 +554,73 @@ const Kurset = () => {
 const RrethNesh = () => {
   return (
     <div className="relative">
-      <section id="rrethnesh" className="absolute -top-36" />
-      <div>
-        <div className="text-4xl font-bold">Rreth Nesh</div>
-        <div>Mirë se vini në Hitechgeneration!</div>
-        <div>
-          Ne ofrojmë një shumëllojshmëri alternativash argëtuese për fëmijë, që
-          frymëzojnë kreativitetin pas shkollës e i ndihmon ata të mësojnë rreth
-          teknologjisë. Duke marrë pjesë në kurset dhe aktivitetet tona, fëmijët
-          dhe të rinjtë janë në gjendje të zbulojnë dhe zotërojnë teknologji të
-          reja. Ne u mësojmë bazat e shkencave kompjuterike, kodimin, robotikën,
-          grafik dizajn dhe fotografinë, sipërmarrjen dhe biznesin, si dhe një
-          sërë lëndësh të tjera të lidhura me shkencën në një mjedis argëtues
-          dhe komod.
+      <section id="rrethnesh" className="absolute -top-24" />
+      <div className="text-md md:text-lg text-gray-700">
+        <div className="text-2xl md:text-4xl text-center font-bold mt-4 text-gray-800">
+          Rreth Nesh
         </div>
-        <div>
-          Përveç mësimit për teknologjinë, studentët tanë përfundojnë duke
-          krijuar miqësi të qëndrueshme dhe duke ndërtuar vetëvlerësim. Ata
-          bashkëpunojnë në projekte të mrekullueshme, të cilat i ndajnë me
-          shokët e klasës, miqtë dhe komunitetin.
-        </div>
-        <div>
-          Pra, lërini fëmijët tuaj të krijojnë dhe të shprehen, lërini të
-          mësojnë të kodojnë dhe lërini të kodojnë për të mësuar. Regjistroni
-          ato në një nga kurset tona.
-        </div>
-        <div>
-          Informacionet për kurset i gjeni ne seksionin “Kurset” si dhe ju
-          ftojmë të na ndiqni ne Instagram për ҫdo lajm dhe komunikim të
-          menjehërshëm me ne. (click link direct te faqja e insta)
-        </div>
-        <div>
-          Kurset zhvillohen në ambiente shumë komode të ndodhura në qendër të
-          Tiranës, në godinë lehtësisht të aksesueshme. Klasat kanë një numër të
-          vogël nxënësish, jo më shumë se 10 nxënës për instruktor. Cdo nxënës
-          ka në dispozicion një lap top dhe/ose materialet e robotikës për
-          realizimin e projekteve, gjatë orës së kursit.
-        </div>
-        <div>
-          Kurset zhvillohen nga instruktorë ekspertë në fushën e teknologjisë
-          dhe pedagogjisë, profesionistë dhe të dashur më fëmijët, duke ndihmuar
-          kështu në krijimin e një atmosfere të këndshme të mësuari.
+        <div className="flex flex-col gap-4">
+          <div className="text-xl md:text-2xl bg-gradient-to-r from-fuchsia-500 to-emerald-500 w-fit bg-clip-text font-bold text-transparent mt-8">
+            Mirëse vini në Hitechgeneration!
+          </div>
+          <div>
+            Ne ofrojmë një shumëllojshmëri alternativash argëtuese për fëmijë,
+            që frymëzojnë kreativitetin pas shkollës e i ndihmon ata të mësojnë
+            rreth teknologjisë. Duke marrë pjesë në kurset dhe aktivitetet tona,
+            fëmijët dhe të rinjtë janë në gjendje të zbulojnë dhe zotërojnë
+            teknologji të reja. Ne u mësojmë bazat e shkencave kompjuterike,
+            kodimin, robotikën, grafik dizajn dhe fotografinë, sipërmarrjen dhe
+            biznesin, si dhe një sërë lëndësh të tjera të lidhura me shkencën në
+            një mjedis argëtues dhe komod.
+          </div>
+          <div>
+            Përveç mësimit për teknologjinë, studentët tanë përfundojnë duke
+            krijuar miqësi të qëndrueshme dhe duke ndërtuar vetëvlerësim. Ata
+            bashkëpunojnë në projekte të mrekullueshme, të cilat i ndajnë me
+            shokët e klasës, miqtë dhe komunitetin.
+          </div>
+          <div>
+            Pra, lërini fëmijët tuaj të krijojnë dhe të shprehen, lërini të
+            mësojnë të kodojnë dhe lërini të kodojnë për të mësuar. Regjistroni
+            ato në një nga kurset tona.
+          </div>
+          <div>
+            Informacionet për kurset i gjeni ne seksionin “Kurset” si dhe ju
+            ftojmë të na ndiqni ne Instagram për ҫdo lajm dhe komunikim të
+            menjehërshëm me ne. (click link direct te faqja e insta)
+          </div>
+          <div>
+            Kurset zhvillohen në ambiente shumë komode të ndodhura në qendër të
+            Tiranës, në godinë lehtësisht të aksesueshme. Klasat kanë një numër
+            të vogël nxënësish, jo më shumë se 10 nxënës për instruktor. Cdo
+            nxënës ka në dispozicion një lap top dhe/ose materialet e robotikës
+            për realizimin e projekteve, gjatë orës së kursit.
+          </div>
+          <div>
+            Kurset zhvillohen nga instruktorë ekspertë në fushën e teknologjisë
+            dhe pedagogjisë, profesionistë dhe të dashur më fëmijët, duke
+            ndihmuar kështu në krijimin e një atmosfere të këndshme të mësuari.
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
+export const Kontakt = () => {
+  return (
+    <div className="mt-10 h-80 flex flex-row items-center justify-between p-4 bg-rose-500 text-white">
+      <div>Kontakt</div>
+      <div className="w-1/2">
+        <iframe
+          width="100%"
+          height="300"
+          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Str8RJC+3GJ,%20Rruga%20e%20Barrikadave,%20Tirana,%20Albania+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        />
+      </div>
+    </div>
+  );
+};
 const Home: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
