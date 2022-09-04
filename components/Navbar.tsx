@@ -5,7 +5,10 @@ import { Fragment } from "react";
 import { TiThMenu } from "react-icons/ti";
 export const Navbar = () => {
   return (
-    <div className="flex flex-row justify-between items-center sticky top-2 z-50 w-full mt-2 px-2 bg-white rounded-xl bg-opacity-90 backdrop-blur-lg border-2 border-gray-100">
+    <div
+      style={{ position: "sticky" }}
+      className="flex flex-row justify-between items-center top-2 z-50 w-full mt-2 px-2 bg-white rounded-xl bg-opacity-90 backdrop-blur-lg border-2 border-gray-100"
+    >
       <div id="left">
         <Link href="/">
           <button className="flex flex-row gap-2 items-center outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-100 rounded-xl px-2">

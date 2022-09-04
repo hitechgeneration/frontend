@@ -1,7 +1,6 @@
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -9,76 +8,94 @@ import { SiScratch, SiAdobe } from "react-icons/si";
 import { FaPython, FaRobot } from "react-icons/fa";
 import { GiSmart } from "react-icons/gi";
 import { useForm } from "react-hook-form";
-import { AiFillCloseCircle, AiFillCheckCircle } from "react-icons/ai";
+import {
+  AiFillCloseCircle,
+  AiFillCheckCircle,
+  AiFillPhone,
+  AiFillInstagram,
+  AiFillFacebook,
+  AiOutlineArrowDown,
+} from "react-icons/ai";
+import { MdMail } from "react-icons/md";
 
 const KursetGrid = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10">
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="relative bg-yellow-300 p-10 h-48 rounded-xl cursor-pointer"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="text-amber-900 text-lg md:text-xl font-bold text-center mb-4">
-            Kodim me Scratch
+      <a href="#scratch">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="relative bg-yellow-300 p-10 h-48 rounded-xl cursor-pointer"
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-amber-900 text-lg md:text-xl font-bold text-center mb-4">
+              Kodim me Scratch
+            </div>
+            <div className="text-amber-700">
+              <SiScratch size={50} className="w-full" />
+            </div>
           </div>
-          <div className="text-amber-700">
-            <SiScratch size={50} className="w-full" />
+        </motion.div>
+      </a>
+      <a href="#python">
+        <motion.div
+          className="relative bg-green-500 p-10 h-48 rounded-xl cursor-pointer"
+          whileHover={{ scale: 1.05 }}
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-emerald-50 text-lg md:text-xl font-bold text-center mb-4">
+              Kodim me Python
+            </div>
+            <div className="text-emerald-100">
+              <FaPython size={50} className="w-full" />
+            </div>
           </div>
-        </div>
-      </motion.div>
-      <motion.div
-        className="relative bg-green-500 p-10 h-48 rounded-xl cursor-pointer"
-        whileHover={{ scale: 1.05 }}
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="text-emerald-50 text-lg md:text-xl font-bold text-center mb-4">
-            Kodim me Python
+        </motion.div>
+      </a>
+      <a href="#robotike">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="relative bg-rose-500 p-10 rounded-xl h-48 cursor-pointer"
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-red-50 text-lg md:text-xl font-bold text-center mb-4">
+              Robotikë
+            </div>
+            <div className="text-red-100">
+              <FaRobot size={50} className="w-full" />
+            </div>
           </div>
-          <div className="text-emerald-100">
-            <FaPython size={50} className="w-full" />
+        </motion.div>
+      </a>
+      <a href="#design">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="relative bg-blue-500 p-10 rounded-xl h-48 cursor-pointer"
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-yellow-50 text-lg md:text-xl font-bold text-center mb-4">
+              Grafik Dizajn dhe Fotografi
+            </div>
+            <div className="text-yellow-100">
+              <SiAdobe size={50} className="w-full" />
+            </div>
           </div>
-        </div>
-      </motion.div>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="relative bg-rose-500 p-10 rounded-xl h-48 cursor-pointer"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="text-red-50 text-lg md:text-xl font-bold text-center mb-4">
-            Robotikë
+        </motion.div>
+      </a>
+      <a href="#sipermarresit">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="relative bg-fuchsia-500 p-10 rounded-xl h-48 cursor-pointer"
+        >
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="text-pink-50 text-lg md:text-xl font-bold text-center mb-4">
+              Sipërmarrësit e Vegjël
+            </div>
+            <div className="text-pink-100">
+              <GiSmart size={50} className="w-full" />
+            </div>
           </div>
-          <div className="text-red-100">
-            <FaRobot size={50} className="w-full" />
-          </div>
-        </div>
-      </motion.div>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="relative bg-blue-500 p-10 rounded-xl h-48 cursor-pointer"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="text-yellow-50 text-lg md:text-xl font-bold text-center mb-4">
-            Grafik Dizajn dhe Fotografi
-          </div>
-          <div className="text-yellow-100">
-            <SiAdobe size={50} className="w-full" />
-          </div>
-        </div>
-      </motion.div>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="relative bg-fuchsia-500 p-10 rounded-xl h-48 cursor-pointer"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="text-pink-50 text-lg md:text-xl font-bold text-center mb-4">
-            Sipërmarrësit e Vegjël
-          </div>
-          <div className="text-pink-100">
-            <GiSmart size={50} className="w-full" />
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </a>
     </div>
   );
 };
@@ -147,7 +164,7 @@ const Welcome = ({ openModal }: { openModal: any }) => {
           onClick={openModal}
           className="w-fit mx-auto px-3 py-2 rounded-full bg-rose-500 text-white font-bold hover:shadow-xl transition duration-500 focus:outline-rose-800 focus:outline-4"
         >
-          Rregjistrohu
+          Regjistrohu
         </button>
         {/* <div className="absolute -z-20 top-80 left-0">
           <Image src="/bg.avif" width={1600} height={1000} />
@@ -176,7 +193,8 @@ const Welcome = ({ openModal }: { openModal: any }) => {
 const kurset = [
   "Kodim me Scratch",
   "Kodim me Python",
-  "Dizajn dhe Fotografi",
+  "Robotike",
+  "Grafik Dizajn dhe Fotografi",
   "Sipërmarrësit e Vegjël",
 ];
 
@@ -241,85 +259,131 @@ const PopUp = ({
                   Forma e rregjistrimit
                 </Dialog.Title>
                 <div className="text-sm text-gray-600 mt-5">
-                  <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="flex flex-col gap-4 items-center w-full"
-                  >
-                    <input
-                      type="text"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("emri_femijes")}
-                      placeholder="Emri i fëmijës"
-                    />
-                    <input
-                      type="text"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("mbiemri_femijes")}
-                      placeholder="Mbiemri i fëmijës"
-                    />
-                    <input
-                      type="text"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("mosha_femijes")}
-                      placeholder="Mosha e fëmijës"
-                    />
-                    <input type="text" className="w-full" placeholder="Kursi" />
-                    <Combobox value={selected} onChange={setSelected}>
-                      <div>
-                        <Combobox.Input
-                          displayValue={(kurs: string) => kurs}
-                          onChange={(e) => setQuery(e.target.value)}
-                        />
-                        <Combobox.Button>Select</Combobox.Button>
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                        afterLeave={() => setQuery("")}
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex flex-col gap-3 items-center w-full max-h-96 overflow-x-hidden overflow-y-auto">
+                      <label htmlFor="emrifemijes" className="w-full ml-4">
+                        Emri i fëmijës
+                      </label>
+                      <input
+                        type="text"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("emri_femijes")}
+                        placeholder="Emri i fëmijës"
+                      />
+                      <label htmlFor="mbieemrifemijes" className="w-full ml-4">
+                        Mbiemri i fëmijës
+                      </label>
+                      <input
+                        type="text"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("mbiemri_femijes")}
+                        placeholder="Mbiemri i fëmijës"
+                      />
+                      <label htmlFor="moshafemijes" className="w-full ml-4">
+                        Mosha e fëmijës
+                      </label>
+                      <input
+                        type="text"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("mosha_femijes")}
+                        placeholder="Mosha e fëmijës"
+                      />
+                      <label htmlFor="kursi" className="w-full ml-4">
+                        Kursi
+                      </label>
+                      <Combobox value={selected} onChange={setSelected}>
+                        <div className="ring-2 ring-blue-200 rounded-full w-2/3 flex flex-row">
+                          <Combobox.Input
+                            id="kursi"
+                            {...register("kursi")}
+                            className="outline-none focus:text-blue-500 rounded-full w-full px-4 py-1 text-gray-700"
+                            displayValue={(kurs: string) => kurs}
+                            onChange={(e) => setQuery(e.target.value)}
+                          />
+                          <Combobox.Button className="px-2 text-blue-500 bg-opacity-0">
+                            <AiOutlineArrowDown />
+                          </Combobox.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                          afterLeave={() => setQuery("")}
+                        >
+                          <div className="relative">
+                            <Combobox.Options className="absolute w-60 -left-28 top-0 bg-blue-50 border-2 border-blue-100 p-4 rounded-lg backdrop-blur-lg bg-opacity-50">
+                              {filteredKurse.length === 0 && query !== "" ? (
+                                <div className="text-sm text-rose-500 font-medium">
+                                  Nuk u gjend një kurs i tillë.
+                                </div>
+                              ) : (
+                                filteredKurse.map((kurs, index) => (
+                                  <Combobox.Option key={index} value={kurs}>
+                                    {({ selected, active }) => (
+                                      <div
+                                        className={`
+                                    ${
+                                      active && "bg-blue-400 text-white"
+                                    } py-2 px-2 text-center rounded-lg
+                                    ${selected && "bg-gray-400 text-gray-800"}
+                                  `}
+                                      >
+                                        {kurs}
+                                      </div>
+                                    )}
+                                  </Combobox.Option>
+                                ))
+                              )}
+                            </Combobox.Options>
+                          </div>
+                        </Transition>
+                      </Combobox>
+                      <label htmlFor="emriprindit" className="w-full ml-4">
+                        Emri i prindit
+                      </label>
+                      <input
+                        type="text"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("emri_prindit")}
+                        placeholder="Emri i prindit"
+                      />
+                      <label htmlFor="mbiemriprindit" className="w-full ml-4">
+                        Mbiemri i prindit
+                      </label>
+                      <input
+                        type="text"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("mbiemri_prindit")}
+                        placeholder="Mbiemri i prindit"
+                      />
+                      <label htmlFor="cel" className="w-full ml-4">
+                        Numri i telefonit
+                      </label>
+                      <input
+                        type="text"
+                        {...register("telefoni")}
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                      />
+                      <label htmlFor="email" className="w-full ml-4">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                        {...register("email")}
+                        placeholder="E-mail"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-red-500 text-white w-full py-1 rounded-full font-medium my-2 hover:bg-red-600"
                       >
-                        <Combobox.Options>
-                          {filteredKurse.length === 0 && query !== "" ? (
-                            <div>Nuk u gjend një kurs i tillë.</div>
-                          ) : (
-                            filteredKurse.map((kurs, index) => (
-                              <Combobox.Option key={index} value={kurs}>
-                                {({ selected, active }) => <div>{kurs}</div>}
-                              </Combobox.Option>
-                            ))
-                          )}
-                        </Combobox.Options>
-                      </Transition>
-                    </Combobox>
-                    <input
-                      type="text"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("emri_prindit")}
-                      placeholder="Emri i prindit"
-                    />
-                    <input
-                      type="text"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("mbiemri_prindit")}
-                      placeholder="Mbiemri i prindit"
-                    />
-                    <input type="text" className="w-full" placeholder="Cel" />
-                    <input
-                      type="email"
-                      className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      {...register("email")}
-                      placeholder="E-mail"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-red-500 text-white w-full py-1 rounded-full font-medium my-2 hover:bg-red-600"
-                    >
-                      Rregjistrohu
-                    </button>
+                        Regjistrohu
+                      </button>
+                    </div>
                   </form>
                 </div>
-                <div>
+                <div className="mt-2">
                   <button
                     type="button"
                     className="inline-flex gap-2 items-center text-gray-500 bg-gray-100 rounded-xl py-1 px-2 hover:shadow-md"
@@ -346,8 +410,9 @@ const Kurset = () => {
         <div className="text-2xl md:text-4xl text-center font-bold mt-4 text-gray-800">
           Kurset
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-10  gap-4">
-          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+        <div className="grid grid-cols-1 lg:grid-cols-2 mt-10  gap-4">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <section id="scratch" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">
                 Kodimi
@@ -391,7 +456,8 @@ const Kurset = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <section id="python" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">
                 Kodimi
@@ -430,7 +496,8 @@ const Kurset = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <section id="robotike" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">
                 Robotika
@@ -469,7 +536,8 @@ const Kurset = () => {
               </div>
             </div>
           </div>
-          <div className=" bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <section id="design" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">
                 Grafik Dizajn & fotografia
@@ -503,7 +571,8 @@ const Kurset = () => {
               </div>
             </div>
           </div>
-          <div className=" bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100">
+            <section id="sipermarresit" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">
                 Sipërmarrësit e vegjël
@@ -609,14 +678,61 @@ const RrethNesh = () => {
 
 export const Kontakt = () => {
   return (
-    <div className="mt-10 h-80 flex flex-row items-center justify-between p-4 bg-rose-500 text-white">
-      <div>Kontakt</div>
-      <div className="w-1/2">
-        <iframe
-          width="100%"
-          height="300"
-          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Str8RJC+3GJ,%20Rruga%20e%20Barrikadave,%20Tirana,%20Albania+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-        />
+    <div className="mt-10 h-fit flex flex-col md:flex-row gap-10 items-center justify-between p-10 bg-rose-500 text-white">
+      <div>
+        <div className="text-lg md:text-xl font-bold">Na kontaktoni.</div>
+        <div>
+          <ul className="text-sm md:text-md flex flex-col gap-4 mt-10">
+            <li>
+              <a
+                href="mailto:hitechgen2021@gmail.com"
+                className="flex flex-row gap-4 items-center hover:text-amber-200 outline-none"
+              >
+                <MdMail />
+                <div>E-mail: hitechgen2021@gmail.com</div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="tel:+355695524998"
+                className="flex flex-row gap-4 items-center hover:text-amber-200 outline-none"
+              >
+                <AiFillPhone />
+                <div>Telefon: +355695524998</div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/hitechgeneration"
+                target="__blank"
+                className="flex flex-row gap-4 items-center hover:text-amber-200 outline-none"
+              >
+                <AiFillInstagram />
+                <div>Instagram: @hitechgeneration</div>
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/hitechgen"
+                target="__blank"
+                className="flex flex-row gap-4 items-center hover:text-amber-200 outline-none"
+              >
+                <AiFillFacebook />
+                <div>Facebook: @hitechgen</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="w-full md:w-1/2 h-full">
+        <div className="w-full h-full">
+          <iframe
+            className="rounded-lg"
+            width="100%"
+            height="100%"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Str8RJC+3GJ,%20Rruga%20e%20Barrikadave,%20Tirana,%20Albania+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+          />
+        </div>
       </div>
     </div>
   );
@@ -626,9 +742,6 @@ const Home: NextPage = () => {
 
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
-  const router = useRouter();
-
-  useEffect(() => {}, [router]);
 
   return (
     <div>
@@ -640,6 +753,7 @@ const Home: NextPage = () => {
         <Kurset />
         <RrethNesh />
       </div>
+      <Kontakt />
     </div>
   );
 };
