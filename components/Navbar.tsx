@@ -41,20 +41,6 @@ export const Navbar = () => {
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
                         href="#kurset"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          if (
-                            window.location.pathname !== window.location.origin
-                          ) {
-                            window.location.href =
-                              window.location.origin + "#kurset";
-                          }
-                          const kurset = document.getElementById("kurset");
-                          kurset?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                        }}
                       >
                         Kurset
                       </a>
@@ -67,20 +53,6 @@ export const Navbar = () => {
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
                         href="#rrethnesh"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          const kurset = document.getElementById("rrethnesh");
-                          if (
-                            window.location.pathname !== window.location.origin
-                          ) {
-                            window.location.href =
-                              window.location.origin + "#rrethnesh";
-                          }
-                          kurset?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                        }}
                       >
                         Rreth Nesh
                       </a>
@@ -113,29 +85,12 @@ export const Navbar = () => {
         <a
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
           href="#kurset"
-          onClick={(e) => {
-            e.preventDefault();
-            if (window.location.pathname !== window.location.origin) {
-              window.location.href = window.location.origin + "#kurset";
-            }
-            const kurset = document.getElementById("kurset");
-            kurset?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
         >
           Kurset
         </a>
         <a
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
           href="#rrethnesh"
-          onClick={(e) => {
-            e.preventDefault();
-            if (window.location.pathname !== window.location.origin) {
-              window.location.href = window.location.origin + "#rrethnesh";
-            }
-
-            const kurset = document.getElementById("rrethnesh");
-            kurset?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
         >
           Rreth Nesh
         </a>
