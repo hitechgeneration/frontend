@@ -6,7 +6,7 @@ import { Header } from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="overflow-x-hidden">
+    <div>
       <Head>
         <title>HiTechGeneration</title>
         <link rel="icon" href={"/light_logo.ico"} />

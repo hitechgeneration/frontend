@@ -744,7 +744,7 @@ const Home: NextPage = () => {
   const openModal = () => setIsOpen(true);
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <div className="">
         <Welcome openModal={openModal} />
       </div>
