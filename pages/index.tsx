@@ -20,7 +20,7 @@ import { MdMail } from "react-icons/md";
 
 const KursetGrid = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4 my-10 z-20">
       <a href="#scratch">
         <motion.div
           whileHover={{ scale: 1.05 }}
@@ -211,8 +211,15 @@ const PopUp = ({
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    await fetch("/api/sendmail", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
   };
 
   const [selected, setSelected] = useState(kurset[0]);
@@ -361,7 +368,7 @@ const PopUp = ({
                         Numri i telefonit
                       </label>
                       <input
-                        type="text"
+                        type="tel"
                         {...register("telefoni")}
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
                       />
