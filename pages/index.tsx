@@ -1,7 +1,7 @@
 import { Combobox, Dialog, Transition } from "@headlessui/react";
 import type { NextPage } from "next";
-import { Fragment, useState } from "react";
-import { motion } from "framer-motion";
+import { Fragment, useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
 import { SiScratch, SiAdobe } from "react-icons/si";
@@ -100,9 +100,42 @@ const KursetGrid = () => {
   );
 };
 
-const Welcome = ({ openModal }: { openModal: any }) => {
+const Welcome = ({
+  openModal,
+  registered,
+  setRegistered,
+}: {
+  openModal: any;
+  registered: boolean;
+  setRegistered: any;
+}) => {
+  useEffect(() => {
+    if (registered) {
+      setTimeout(() => {
+        setRegistered(false);
+      }, 5000);
+    }
+  }, [registered]);
+
   return (
     <div className="grid grid-cols-1 gap-10 mt-20">
+      <AnimatePresence>
+        {registered && (
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{
+              duration: 0.35,
+              ease: "easeInOut",
+            }}
+            className="fixed z-30 left-10 bottom-10 flex flex-row gap-4 items-center p-8 font-bold text-lg rounded-lg bg-green-500 text-white "
+          >
+            <AiFillCheckCircle size={24} />
+            <span>Regjistrimi u krye me sukses!</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="text-center text-2xl md:text-4xl font-medium tracking-tight">
         Aftësi, Imagjinatë, Kreativitet.
       </div>
@@ -201,18 +234,21 @@ const kurset = [
 const PopUp = ({
   isOpen,
   closeModal,
+  setRegistered,
 }: {
   isOpen: boolean;
   closeModal: any;
+  setRegistered: any;
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    await fetch("/api/sendmail", {
+    const res = await fetch("/api/sendmail", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -220,6 +256,11 @@ const PopUp = ({
       },
       body: JSON.stringify(data),
     });
+    if (res.ok) {
+      reset();
+      closeModal();
+      setRegistered(true);
+    }
   };
 
   const [selected, setSelected] = useState(kurset[0]);
@@ -274,7 +315,7 @@ const PopUp = ({
                       <input
                         type="text"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("emri_femijes")}
+                        {...register("emri_femijes", { required: true })}
                         placeholder="Emri i fëmijës"
                       />
                       <label htmlFor="mbieemrifemijes" className="w-full ml-4">
@@ -283,16 +324,20 @@ const PopUp = ({
                       <input
                         type="text"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mbiemri_femijes")}
+                        {...register("mbiemri_femijes", { required: true })}
                         placeholder="Mbiemri i fëmijës"
                       />
                       <label htmlFor="moshafemijes" className="w-full ml-4">
                         Mosha e fëmijës
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mosha_femijes")}
+                        {...register("mosha_femijes", {
+                          required: true,
+                          min: 7,
+                          max: 14,
+                        })}
                         placeholder="Mosha e fëmijës"
                       />
                       <label htmlFor="kursi" className="w-full ml-4">
@@ -302,7 +347,7 @@ const PopUp = ({
                         <div className="ring-2 ring-blue-200 rounded-full w-2/3 flex flex-row">
                           <Combobox.Input
                             id="kursi"
-                            {...register("kursi")}
+                            {...register("kursi", { required: true })}
                             className="outline-none focus:text-blue-500 rounded-full w-full px-4 py-1 text-gray-700"
                             displayValue={(kurs: string) => kurs}
                             onChange={(e) => setQuery(e.target.value)}
@@ -332,7 +377,7 @@ const PopUp = ({
                                         className={`
                                     ${
                                       active && "bg-blue-400 text-white"
-                                    } py-2 px-2 text-center rounded-lg
+                                    } py-2 px-2 text-center rounded-lg cursor-pointer
                                     ${selected && "bg-gray-400 text-gray-800"}
                                   `}
                                       >
@@ -352,7 +397,7 @@ const PopUp = ({
                       <input
                         type="text"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("emri_prindit")}
+                        {...register("emri_prindit", { required: true })}
                         placeholder="Emri i prindit"
                       />
                       <label htmlFor="mbiemriprindit" className="w-full ml-4">
@@ -361,7 +406,7 @@ const PopUp = ({
                       <input
                         type="text"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mbiemri_prindit")}
+                        {...register("mbiemri_prindit", { required: true })}
                         placeholder="Mbiemri i prindit"
                       />
                       <label htmlFor="cel" className="w-full ml-4">
@@ -369,7 +414,11 @@ const PopUp = ({
                       </label>
                       <input
                         type="tel"
-                        {...register("telefoni")}
+                        {...register("telefoni", {
+                          required: true,
+                          minLength: 10,
+                          maxLength: 10,
+                        })}
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
                       />
                       <label htmlFor="email" className="w-full ml-4">
@@ -378,7 +427,7 @@ const PopUp = ({
                       <input
                         type="email"
                         className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("email")}
+                        {...register("email", { required: true })}
                         placeholder="E-mail"
                       />
                       <button
@@ -746,19 +795,27 @@ export const Kontakt = () => {
 };
 const Home: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [registered, setRegistered] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
   return (
     <div className="overflow-x-hidden">
       <div className="">
-        <Welcome openModal={openModal} />
+        <Welcome
+          openModal={openModal}
+          registered={registered}
+          setRegistered={setRegistered}
+        />
       </div>
-      <PopUp isOpen={isOpen} closeModal={closeModal} />
+      <PopUp
+        isOpen={isOpen}
+        closeModal={closeModal}
+        setRegistered={setRegistered}
+      />
       <div className="grid grid-cols-1 gap-10 top-10">
-        <Kurset />
         <RrethNesh />
+        <Kurset />
       </div>
       <Kontakt />
     </div>

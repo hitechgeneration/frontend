@@ -40,9 +40,9 @@ export const Navbar = () => {
                         className={`${
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="#kurset"
+                        href="#rrethnesh"
                       >
-                        Kurset
+                        Rreth Nesh
                       </a>
                     )}
                   </Menu.Item>
@@ -52,9 +52,9 @@ export const Navbar = () => {
                         className={`${
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="#rrethnesh"
+                        href="#kurset"
                       >
-                        Rreth Nesh
+                        Kurset
                       </a>
                     )}
                   </Menu.Item>
@@ -84,17 +84,16 @@ export const Navbar = () => {
       >
         <a
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
-          href="#kurset"
-        >
-          Kurset
-        </a>
-        <a
-          className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
           href="#rrethnesh"
         >
           Rreth Nesh
         </a>
-
+        <a
+          className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
+          href="#kurset"
+        >
+          Kurset
+        </a>
         <Link href="/blog">
           <a className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100">
             Blog

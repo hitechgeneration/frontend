@@ -19,7 +19,6 @@ export default async function SendMail(
       "D:\\Code\\web\\hitechgeneration\\frontend\\pages\\api\\views\\registration.ejs",
       { ...req.body }
     );
-    console.log(mail);
     const mailOption = {
       from: req.body.email,
       to: process.env.EMAIL,
@@ -35,6 +34,8 @@ export default async function SendMail(
         return res.send("mail sent");
       }
     });
+
+    return res.status(200).send("mail sent");
   } else {
     return res.status(405).send("405 Method not allowed");
   }
