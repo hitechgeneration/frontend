@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import ejs from "ejs";
+import path from "path";
 
 export default async function SendMail(
   req: NextApiRequest,
@@ -15,10 +16,11 @@ export default async function SendMail(
       },
     });
 
-    const mail = await ejs.renderFile(
-      "D:\\Code\\web\\hitechgeneration\\frontend\\pages\\api\\views\\registration.ejs",
-      { ...req.body }
-    );
+    const views = path.join(process.cwd(), "views");
+
+    const mail = await ejs.renderFile(views + "/registration.ejs", {
+      ...req.body,
+    });
     const mailOption = {
       from: req.body.email,
       to: process.env.EMAIL,
