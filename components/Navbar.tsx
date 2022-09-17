@@ -36,26 +36,26 @@ export const Navbar = () => {
                 <div className="flex flex-col gap-4 items-start p-2">
                   <Menu.Item>
                     {({ active }) => (
-                      <a
+                      <Link
                         className={`${
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="#rrethnesh"
+                        href="/#rrethnesh"
                       >
                         Rreth Nesh
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a
+                      <Link
                         className={`${
                           active && "bg-blue-100"
                         } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="#kurset"
+                        href="/#kurset"
                       >
                         Kurset
-                      </a>
+                      </Link>
                     )}
                   </Menu.Item>
 
@@ -82,18 +82,18 @@ export const Navbar = () => {
         id="right"
         className="hidden md:flex flex-row gap-10 items-center text-sm font-bold bg-blue-50 text-blue-500 p-3 rounded-xl"
       >
-        <a
+        <Link
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
-          href="#rrethnesh"
+          href="/#rrethnesh"
         >
           Rreth Nesh
-        </a>
-        <a
+        </Link>
+        <Link
           className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
-          href="#kurset"
+          href="/#kurset"
         >
           Kurset
-        </a>
+        </Link>
         <Link href="/blog">
           <a className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100">
             Blog
