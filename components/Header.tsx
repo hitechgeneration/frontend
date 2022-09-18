@@ -15,7 +15,7 @@ export const Header = () => {
 
   return (
     <div className="bg-rose-500">
-      <div className="relative w-fit flex flex-row gap-4 items-center ml-auto mr-10 p-2 text-gray-100 bg-rose-500">
+      <div className="relative w-fit flex flex-row gap-4 items-center ml-auto mr-4 md:mr-10 p-2 text-gray-100 bg-rose-500">
         <a
           href="mailto:hitechgen2021@gmail.com"
           className="outline-none hover:text-yellow-100 focus-visible:text-yellow-200"

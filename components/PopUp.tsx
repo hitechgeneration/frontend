@@ -83,7 +83,7 @@ export const PopUp = ({
                   as="h3"
                   className="text-lg md:text-xl font-medium leading-6 text-gray-900"
                 >
-                  Forma e rregjistrimit
+                  Forma e regjistrimit
                 </Dialog.Title>
                 <div className="text-sm text-gray-600 mt-5">
                   <form onSubmit={handleSubmit(onSubmit)}>
@@ -274,7 +274,10 @@ export const PopUp = ({
                         </label>
                         <input
                           type="email"
-                          className={`w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                          className={`mt-2 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.email &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
                           {...register("email", { required: true })}
                           placeholder="E-mail"
                         />

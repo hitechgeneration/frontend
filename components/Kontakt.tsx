@@ -3,7 +3,7 @@ import { MdMail } from "react-icons/md";
 
 export const Kontakt = () => {
   return (
-    <div className="mt-10 h-fit flex flex-col md:flex-row gap-10 items-center justify-between p-10 bg-rose-500 text-white">
+    <div className="mt-10 mb-10 h-fit flex flex-col md:flex-row gap-10 items-center justify-between p-10 bg-rose-500 text-white shadow-lg shadow-yellow-400">
       <div>
         <div className="text-lg md:text-xl font-bold">Na kontaktoni.</div>
         <div>

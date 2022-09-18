@@ -35,24 +35,28 @@ export const Navbar = () => {
               <Menu.Items className="flex flex-col gap-4 items-start p-2 absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-blue-50 shadow-lg ring-1 text-blue-500 font-medium ring-black ring-opacity-5 focus:outline-none">
                 <Menu.Item>
                   {({ active }) => (
-                    <button
-                      className={`${
-                        active && "bg-blue-100"
-                      } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                    >
-                      <Link href="/#rrethnesh">Rreth Nesh</Link>
-                    </button>
+                    <Link href="/#rrethnesh">
+                      <button
+                        className={`${
+                          active && "bg-blue-100"
+                        } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
+                      >
+                        Rreth Nesh
+                      </button>
+                    </Link>
                   )}
                 </Menu.Item>
                 <Menu.Item>
                   {({ active }) => (
-                    <button
-                      className={`${
-                        active && "bg-blue-100"
-                      } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                    >
-                      <Link href="/#kurset">Kurset</Link>
-                    </button>
+                    <Link href="/#kurset">
+                      <button
+                        className={`${
+                          active && "bg-blue-100"
+                        } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
+                      >
+                        Kurset
+                      </button>
+                    </Link>
                   )}
                 </Menu.Item>
 
@@ -78,17 +82,15 @@ export const Navbar = () => {
         id="right"
         className="hidden md:flex flex-row gap-10 items-center text-sm font-bold bg-blue-50 text-blue-500 p-3 rounded-xl"
       >
-        <Link
-          className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
-          href="/#rrethnesh"
-        >
-          Rreth Nesh
+        <Link href="/#rrethnesh">
+          <a className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100">
+            Rreth Nesh
+          </a>
         </Link>
-        <Link
-          className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100"
-          href="/#kurset"
-        >
-          Kurset
+        <Link href="/#kurset">
+          <a className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100">
+            Kurset
+          </a>
         </Link>
         <Link href="/blog">
           <a className="border-2 border-transparent px-2 py-1 rounded-full hover:border-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100">
