@@ -7,6 +7,7 @@ import { getDate } from ".";
 import { useRouter } from "next/router";
 import { FiArrowLeft } from "react-icons/fi";
 import { Kontakt } from "../../components/Kontakt";
+import Image from "next/image";
 
 export default function Blog({ blog }: { blog: IBlog }) {
   const router = useRouter();
@@ -22,10 +23,11 @@ export default function Blog({ blog }: { blog: IBlog }) {
         {blog.fields.title}
       </div>
       {blog.fields.thumbnail && (
-        <div className="h-80 w-auto my-6">
-          <img
-            src={blog.fields.thumbnail.fields.file.url}
+        <div className="relative h-80 w-auto my-6">
+          <Image
+            src={`https:${blog.fields.thumbnail.fields.file.url}`}
             className="rounded-lg w-full h-full object-cover"
+            layout="fill"
           />
         </div>
       )}
@@ -45,7 +47,6 @@ export default function Blog({ blog }: { blog: IBlog }) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const blogs = await getBlogs();
-
   const paths = blogs.map((blog: any) => {
     return {
       params: {

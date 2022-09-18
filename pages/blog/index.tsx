@@ -3,6 +3,7 @@ import Link from "next/link";
 import { IBlog, getBlogs } from "../../utils/contentful";
 import { FiArrowUpRight } from "react-icons/fi";
 import { Kontakt } from "../../components/Kontakt";
+import Image from "next/image";
 
 export const getDate = (date: string) => {
   return new Date(date).toLocaleString("en-US", {
@@ -16,10 +17,11 @@ const BlogCard = ({ blog }: { blog: IBlog }) => {
   return (
     <div className="p-4 border-2 border-gray-50 shadow-lg shadow-slate-200/80 rounded-lg my-4 grid grid-cols-1 md:grid-cols-2 gap-4">
       {blog.fields.thumbnail && (
-        <div className="h-48 w-auto rounded-lg">
-          <img
-            src={blog.fields.thumbnail.fields.file.url}
+        <div className="relative h-48 w-auto rounded-lg">
+          <Image
+            src={`https:${blog.fields.thumbnail.fields.file.url}`}
             className="w-full h-full object-cover rounded-lg"
+            layout="fill"
           />
         </div>
       )}
