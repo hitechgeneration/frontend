@@ -172,7 +172,7 @@ export const Kurset = () => {
               </div>
             </div>
           </div>
-          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100 col-span-2">
+          <div className="relative bg-white rounded-xl p-4 shadow-lg border-2 border-gray-100 md:col-span-2">
             <section id="sipermarresit" className="absolute -top-24" />
             <div className="flex flex-col gap-4">
               <div className="text-lg md:text-xl font-medium text-gray-800">

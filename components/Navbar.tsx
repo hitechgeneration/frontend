@@ -13,7 +13,7 @@ export const Navbar = () => {
         <Link href="/">
           <button className="flex flex-row gap-2 items-center outline-none focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-100 rounded-xl px-2">
             <Image src={"/logo.png"} width={70} height={70} />
-            <div className="font-light">HI TECH GENERATION</div>
+            <div className="font-light">HiTech Generation</div>
           </button>
         </Link>
       </div>
@@ -32,47 +32,43 @@ export const Navbar = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-blue-50 shadow-lg ring-1 text-blue-500 font-medium ring-black ring-opacity-5 focus:outline-none">
-                <div className="flex flex-col gap-4 items-start p-2">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        className={`${
-                          active && "bg-blue-100"
-                        } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="/#rrethnesh"
-                      >
-                        Rreth Nesh
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                        className={`${
-                          active && "bg-blue-100"
-                        } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        href="/#kurset"
-                      >
-                        Kurset
-                      </Link>
-                    )}
-                  </Menu.Item>
+              <Menu.Items className="flex flex-col gap-4 items-start p-2 absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-blue-50 shadow-lg ring-1 text-blue-500 font-medium ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active && "bg-blue-100"
+                      } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
+                    >
+                      <Link href="/#rrethnesh">Rreth Nesh</Link>
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active && "bg-blue-100"
+                      } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
+                    >
+                      <Link href="/#kurset">Kurset</Link>
+                    </button>
+                  )}
+                </Menu.Item>
 
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link href="/blog">
-                        <a
-                          className={`${
-                            active && "bg-blue-100"
-                          } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
-                        >
-                          Blog
-                        </a>
-                      </Link>
-                    )}
-                  </Menu.Item>
-                </div>
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link href="/blog">
+                      <a
+                        className={`${
+                          active && "bg-blue-100"
+                        } w-full text-center  px-2 py-1 rounded-lg hover:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:bg-blue-100`}
+                      >
+                        Blog
+                      </a>
+                    </Link>
+                  )}
+                </Menu.Item>
               </Menu.Items>
             </Transition>
           </div>

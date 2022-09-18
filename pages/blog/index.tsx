@@ -50,12 +50,21 @@ export default function Blogs({ blogs }: { blogs: Array<IBlog> }) {
       <h1 className="text-2xl md:text-4xl font-bold text-center my-5 text-neutral-800">
         Blog
       </h1>
-      <div>
-        {blogs.map((blog: any) => (
-          <BlogCard key={blog.sys.id} blog={blog} />
-        ))}
-      </div>
-      <Kontakt />
+      {(!blogs || blogs.length === 0) && (
+        <div className="text-center text-xl mt-20 text-neutral-800">
+          Për momentin nuk ka asnjë event ose artikull.
+        </div>
+      )}
+      {blogs && blogs.length > 0 && (
+        <>
+          <div>
+            {blogs.map((blog: any) => (
+              <BlogCard key={blog.sys.id} blog={blog} />
+            ))}
+          </div>
+          <Kontakt />
+        </>
+      )}
     </div>
   );
 }

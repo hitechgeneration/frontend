@@ -1,5 +1,5 @@
 import { Combobox, Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillCloseCircle, AiOutlineArrowDown } from "react-icons/ai";
 const kurset = [
@@ -88,127 +88,202 @@ export const PopUp = ({
                 <div className="text-sm text-gray-600 mt-5">
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-3 items-center w-full max-h-96 overflow-x-hidden overflow-y-auto">
-                      <label htmlFor="emrifemijes" className="w-full ml-4">
-                        Emri i fëmijës
-                      </label>
-                      <input
-                        type="text"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("emri_femijes", { required: true })}
-                        placeholder="Emri i fëmijës"
-                      />
-                      <label htmlFor="mbieemrifemijes" className="w-full ml-4">
-                        Mbiemri i fëmijës
-                      </label>
-                      <input
-                        type="text"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mbiemri_femijes", { required: true })}
-                        placeholder="Mbiemri i fëmijës"
-                      />
-                      <label htmlFor="moshafemijes" className="w-full ml-4">
-                        Mosha e fëmijës
-                      </label>
-                      <input
-                        type="number"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mosha_femijes", {
-                          required: true,
-                          min: 7,
-                          max: 14,
-                        })}
-                        placeholder="Mosha e fëmijës"
-                      />
-                      <label htmlFor="kursi" className="w-full ml-4">
-                        Kursi
-                      </label>
-                      <Combobox value={selected} onChange={setSelected}>
-                        <div className="ring-2 ring-blue-200 rounded-full w-2/3 flex flex-row">
-                          <Combobox.Input
-                            id="kursi"
-                            {...register("kursi", { required: true })}
-                            className="outline-none focus:text-blue-500 rounded-full w-full px-4 py-1 text-gray-700"
-                            displayValue={(kurs: string) => kurs}
-                            onChange={(e) => setQuery(e.target.value)}
-                          />
-                          <Combobox.Button className="px-2 text-blue-500 bg-opacity-0">
-                            <AiOutlineArrowDown />
-                          </Combobox.Button>
-                        </div>
-                        <Transition
-                          as={Fragment}
-                          leave="transition ease-in duration-100"
-                          leaveFrom="opacity-100"
-                          leaveTo="opacity-0"
-                          afterLeave={() => setQuery("")}
-                        >
-                          <div className="relative">
-                            <Combobox.Options className="absolute w-60 -left-28 top-0 bg-blue-50 border-2 border-blue-100 p-4 rounded-lg backdrop-blur-lg bg-opacity-50">
-                              {filteredKurse.length === 0 && query !== "" ? (
-                                <div className="text-sm text-rose-500 font-medium">
-                                  Nuk u gjend një kurs i tillë.
-                                </div>
-                              ) : (
-                                filteredKurse.map((kurs, index) => (
-                                  <Combobox.Option key={index} value={kurs}>
-                                    {({ selected, active }) => (
-                                      <div
-                                        className={`
-                                    ${
-                                      active && "bg-blue-400 text-white"
-                                    } py-2 px-2 text-center rounded-lg cursor-pointer
-                                    ${selected && "bg-gray-400 text-gray-800"}
-                                  `}
-                                      >
-                                        {kurs}
-                                      </div>
-                                    )}
-                                  </Combobox.Option>
-                                ))
-                              )}
-                            </Combobox.Options>
+                      <div className="w-full">
+                        <label htmlFor="emrifemijes" className="ml-2">
+                          Emri i fëmijës
+                        </label>
+                        <input
+                          type="text"
+                          className={`mt-1 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.emri_femijes &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                          {...register("emri_femijes", { required: true })}
+                          placeholder="Emri i fëmijës"
+                        />
+                        {errors.emri_femijes && (
+                          <div className="text-red-500 text-xs ml-4 mt-1">
+                            Emri i fëmijës është i domosdoshëm.
                           </div>
-                        </Transition>
-                      </Combobox>
-                      <label htmlFor="emriprindit" className="w-full ml-4">
-                        Emri i prindit
-                      </label>
-                      <input
-                        type="text"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("emri_prindit", { required: true })}
-                        placeholder="Emri i prindit"
-                      />
-                      <label htmlFor="mbiemriprindit" className="w-full ml-4">
-                        Mbiemri i prindit
-                      </label>
-                      <input
-                        type="text"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("mbiemri_prindit", { required: true })}
-                        placeholder="Mbiemri i prindit"
-                      />
-                      <label htmlFor="cel" className="w-full ml-4">
-                        Numri i telefonit
-                      </label>
-                      <input
-                        type="tel"
-                        {...register("telefoni", {
-                          required: true,
-                          minLength: 10,
-                          maxLength: 10,
-                        })}
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                      />
-                      <label htmlFor="email" className="w-full ml-4">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className={`w-full outline-none foucs:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
-                        {...register("email", { required: true })}
-                        placeholder="E-mail"
-                      />
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="mbieemrifemijes" className="ml-2">
+                          Mbiemri i fëmijës
+                        </label>
+                        <input
+                          type="text"
+                          className={`w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.mbiemri_femijes &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                          {...register("mbiemri_femijes", { required: true })}
+                          placeholder="Mbiemri i fëmijës"
+                        />
+                        {errors.mbiemri_femijes && (
+                          <div className="text-red-500 text-xs ml-4 mt-1">
+                            Mbiemri i fëmijës është i domosdoshëm.
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="moshafemijes" className="ml-2">
+                          Mosha e fëmijës
+                        </label>
+                        <input
+                          type="number"
+                          className={`mt-1 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.mosha_femijes &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                          {...register("mosha_femijes", {
+                            required: true,
+                            min: 7,
+                            max: 14,
+                          })}
+                          placeholder="Mosha e fëmijës"
+                        />
+                        {errors.mosha_femijes && (
+                          <div className="text-red-500 text-xs w-2/3 ml-4 mt-1">
+                            Mosha e fëmijës është e domosdoshme dhe duhet të
+                            jetë midis 7 dhe 14 vjeç.
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="kursi" className="ml-2">
+                          Kursi
+                        </label>
+                        <Combobox value={selected} onChange={setSelected}>
+                          <div className="ml-2 mt-1 ring-2 ring-blue-200 rounded-full w-11/12 flex flex-row">
+                            <Combobox.Input
+                              id="kursi"
+                              {...register("kursi", { required: true })}
+                              className="outline-none focus:text-blue-500 rounded-full w-full px-4 py-1 text-gray-700"
+                              displayValue={(kurs: string) => kurs}
+                              onChange={(e) => setQuery(e.target.value)}
+                            />
+                            <Combobox.Button className="px-2 text-blue-500 bg-opacity-0">
+                              <AiOutlineArrowDown />
+                            </Combobox.Button>
+                          </div>
+                          <Transition
+                            as={Fragment}
+                            leave="transition ease-in duration-100"
+                            leaveFrom="opacity-100"
+                            leaveTo="opacity-0"
+                            afterLeave={() => setQuery("")}
+                          >
+                            <div className="relative">
+                              <Combobox.Options className="absolute w-60 left-1/2 -translate-x-1/2 top-2 bg-blue-50 border-2 border-blue-100 p-4 rounded-lg backdrop-blur-lg bg-opacity-50">
+                                {filteredKurse.length === 0 && query !== "" ? (
+                                  <div className="text-sm text-rose-500 font-medium">
+                                    Nuk u gjend një kurs i tillë.
+                                  </div>
+                                ) : (
+                                  filteredKurse.map((kurs, index) => (
+                                    <Combobox.Option key={index} value={kurs}>
+                                      {({ selected, active }) => (
+                                        <div
+                                          className={`
+                                      ${
+                                        active && "bg-blue-400 text-white"
+                                      } py-2 px-2 text-center rounded-lg cursor-pointer
+                                      ${selected && "bg-gray-400 text-gray-800"}
+                                      `}
+                                        >
+                                          {kurs}
+                                        </div>
+                                      )}
+                                    </Combobox.Option>
+                                  ))
+                                )}
+                              </Combobox.Options>
+                            </div>
+                          </Transition>
+                        </Combobox>
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="emriprindit" className="ml-2">
+                          Emri i prindit
+                        </label>
+                        <input
+                          type="text"
+                          className={`mt-1 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.emri_prindit &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                          {...register("emri_prindit", { required: true })}
+                          placeholder="Emri i prindit"
+                        />
+                        {errors.emri_prindit && (
+                          <div className="text-red-500 text-xs w-2/3 ml-4 mt-1">
+                            Emri i prindit është i domosdoshëm.
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="mbiemriprindit" className="ml-2">
+                          Mbiemri i prindit
+                        </label>
+                        <input
+                          type="text"
+                          className={`mt-1 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.mbiemri_prindit &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                          {...register("mbiemri_prindit", { required: true })}
+                          placeholder="Mbiemri i prindit"
+                        />
+                        {errors.mbiemri_prindit && (
+                          <div className="text-red-500 text-xs w-2/3 ml-4 mt-1">
+                            Mbiemri i prindit është i domosdoshëm.
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="cel" className="ml-2">
+                          Numri i telefonit
+                        </label>
+                        <input
+                          type="tel"
+                          {...register("telefoni", {
+                            required: true,
+                            pattern: {
+                              value: /^[0-9]{10}$/,
+                              message:
+                                "Numri i telefonit duhet të jetë 10 shifror.",
+                            },
+                            minLength: 10,
+                            maxLength: 10,
+                          })}
+                          className={`mt-1 w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500 ${
+                            errors.telefoni &&
+                            "border-red-500 focus:border-red-400"
+                          }`}
+                        />
+                        {errors.telefoni && (
+                          <div className="text-red-500 text-xs w-2/3 ml-4 mt-1">
+                            Shembull: 0612345678.
+                          </div>
+                        )}
+                      </div>
+                      <div className="w-full">
+                        <label htmlFor="email" className="ml-2">
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className={`w-full outline-none focus:outline-none rounded-full px-2 py-1 border-2 border-blue-100 focus:border-gray-500`}
+                          {...register("email", { required: true })}
+                          placeholder="E-mail"
+                        />
+                        {errors.email && (
+                          <div className="text-red-500 text-xs w-2/3 ml-4 mt-1">
+                            Emaili është i domosdoshëm.
+                          </div>
+                        )}
+                      </div>
                       <button
                         type="submit"
                         className="bg-red-500 text-white w-full py-1 rounded-full font-medium my-2 hover:bg-red-600"

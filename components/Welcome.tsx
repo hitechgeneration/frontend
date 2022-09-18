@@ -43,7 +43,7 @@ export const Welcome = ({
       <div className="text-center text-2xl md:text-4xl font-medium tracking-tight">
         Aftësi, Imagjinatë, Kreativitet.
       </div>
-      <div className="w-2/3 md:w-fit mx-auto flex flex-row gap-10">
+      <div className="w-2/3 md:w-fit mx-auto grid grid-cols-4 gap-2 md:grid-cols-4 md:gap-10">
         <motion.div
           className="div"
           animate={{ x: [0, 100, 0, -70, 0] }}
