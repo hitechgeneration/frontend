@@ -35,10 +35,9 @@ export default function Blog({ blog }: { blog: IBlog }) {
         {getDate(blog.fields.date)}
       </div>
       <div className="mb-10 prose">
-        <ReactMarkdown
-          children={blog.fields.content}
-          remarkPlugins={[remarkGfm]}
-        />
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {blog.fields.content}
+        </ReactMarkdown>
       </div>
       <Kontakt />
     </div>
