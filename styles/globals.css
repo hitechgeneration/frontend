@@ -9,4 +9,13 @@
     font-family: "Noto Sans", sans-serif;
     scroll-behavior: smooth;
   }
+  ::-moz-selection {
+    color: #eff6ff;
+    background: #3b82f6;
+  }
+
+  ::selection {
+    color: #eff6ff;
+    background: #3b82f6;
+  }
 }
